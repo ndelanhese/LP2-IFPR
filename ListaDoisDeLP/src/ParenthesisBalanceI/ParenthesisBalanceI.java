@@ -1,6 +1,6 @@
 package ParenthesisBalanceI;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class ParenthesisBalanceI {
 
@@ -8,34 +8,43 @@ public class ParenthesisBalanceI {
 
         Scanner leia = new Scanner(System.in);
 
-        String equacao = leia.next();
+        while (leia.hasNext()) {
 
-        String[] equacaoCortada = equacao.replaceAll("[0-9]", "").replaceAll("[aA-zZ]", "").replaceAll("[*--+/]", "").split("");
+            String equacao = leia.next();
 
-        int a = 0, b = 0;
+            String[] equacaoCortada = equacao.replaceAll("[0-9]", "").replaceAll("[aA-zZ]", "").replaceAll("[*--+/]", "").split("");
 
-        for (int i = 0; i < equacaoCortada.length; i++) {
+            Stack<String> pilhaDeParenteses = new Stack<>();
             
-            if(equacaoCortada[0].equals(")")){
-                i = equacaoCortada.length - 1;
-            }
-                        
-            if (equacaoCortada[i].equals("(")) {
-               
-                a++;
-            } else {
-                if (equacaoCortada[i].equals(")")) {
-                    b++;
-                }
-            }
-        }
-        
-        if (a == b) {
-            System.out.println("correct");
-        }else{
-            System.out.println("incorrect");
-        }
+            int a = 0, b = 0;
 
+            for (int i = 0; i < equacaoCortada.length; i++) {
+
+                if (equacaoCortada[0].equals(")")) {
+                    i = equacaoCortada.length - 1;
+                }
+
+                if (equacaoCortada[i].equals("(")) {
+
+                    pilhaDeParenteses.push("(");
+                } else {
+                    if (equacaoCortada[i].equals(")")) {
+                        
+                        if (!pilhaDeParenteses.pop().equals("(")) {
+                             i = equacaoCortada.length - 1;
+                        }
+                        
+                    }
+                }
+                pilhaDeParenteses.pop();
+            }
+
+            if (a == b) {
+                System.out.println("correct");
+            } else {
+                System.out.println("incorrect");
+            }
+        }
     }
 
 }

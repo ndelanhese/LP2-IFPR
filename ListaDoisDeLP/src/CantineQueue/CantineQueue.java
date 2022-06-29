@@ -28,7 +28,7 @@ public class CantineQueue {
             Collections.sort(notas, Collections.reverseOrder());
             
             for (int i = 0; i < notas.size(); i++) {
-                if (notas.get(i) == notasUm.get(i)) {
+                if (notas.get(i).equals(notasUm.get(i)) ) {
                     count++;
                 }
             }
