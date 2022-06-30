@@ -38,24 +38,24 @@ public class GoingtoMarket {
                 boolean teste = true;
                 int posicao = 0;
                 while (teste) {
-                    
+
                     if (produtos.get(posicao).equals(produtosCompra.get(j))) {
-                        
-                       teste = false;
+
+                        teste = false;
                     } else {
                         posicao++;
                     }
                 }
 
                 a += (quantiadeCompraNumero.get(j) * precos.get(posicao));
-                
+
             }
             valorTotal.add(a);
 
         }
 
         for (int i = 0; i < idasMercado; i++) {
-            System.out.println("R$ " + valorTotal.get(i));
+            System.out.println("R$ " + String.format("%.2f", valorTotal.get(i)));
 
         }
 
